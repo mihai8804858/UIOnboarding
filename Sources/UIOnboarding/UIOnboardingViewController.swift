@@ -154,7 +154,7 @@ private extension UIOnboardingViewController {
         
         onboardingScrollView.isScrollEnabled = false
         onboardingScrollView.showsHorizontalScrollIndicator = false
-        onboardingScrollView.backgroundColor = .systemGroupedBackground
+        onboardingScrollView.backgroundColor = configuration.backgroundColor
         onboardingScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(onboardingScrollView)

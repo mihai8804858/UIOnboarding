@@ -15,14 +15,16 @@ public struct UIOnboardingViewConfiguration {
     public let featureStyle: UIOnboardingFeatureStyle
     public var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
     public var buttonConfiguration: UIOnboardingButtonConfiguration
-    
+    public var backgroundColor: UIColor
+
     public init(appIcon: UIImage,
                 firstTitleLine: NSMutableAttributedString,
                 secondTitleLine: NSMutableAttributedString,
                 features: Array<UIOnboardingFeature>,
                 featureStyle: UIOnboardingFeatureStyle = .init(),
                 textViewConfiguration: UIOnboardingTextViewConfiguration? = nil,
-                buttonConfiguration: UIOnboardingButtonConfiguration) {
+                buttonConfiguration: UIOnboardingButtonConfiguration,
+                backgroundColor: UIColor = .systemBackground) {
         self.appIcon = appIcon
         self.firstTitleLine = firstTitleLine
         self.secondTitleLine = secondTitleLine
@@ -30,5 +32,6 @@ public struct UIOnboardingViewConfiguration {
         self.featureStyle = featureStyle
         self.textViewConfiguration = textViewConfiguration
         self.buttonConfiguration = buttonConfiguration
+        self.backgroundColor = backgroundColor
     }
 }

@@ -33,8 +33,14 @@ final class UIOnboardingButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layer.cornerRadius = bounds.height / 2
+    }
+
     private func configure() {
-        layer.cornerRadius = UIScreenType.isiPhoneSE ? 13 : 15
+        layer.cornerRadius = bounds.height / 2
         layer.cornerCurve = .continuous
         titleLabel?.numberOfLines = 0
         
