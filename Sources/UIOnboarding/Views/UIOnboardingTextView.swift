@@ -27,8 +27,8 @@ final class UIOnboardingTextView: UITextView {
         backgroundColor = .clear
         textContainerInset = .init(top: 0, left: 0, bottom: 30, right: 0)
         textColor = .secondaryLabel
-        if let tintColor = configuration.tint {
-            self.tintColor = tintColor
+        if let linkColor = configuration.linkColor {
+            tintColor = linkColor
         }
         
         accessibilityHint = "Notice text and link"
@@ -123,11 +123,12 @@ extension UIOnboardingTextView {
                 font = UIFontMetrics.default.scaledFont(for: customFont, maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
             }
         } else {
+            let weight = configuration.fontWeight ?? .regular
             if #available(iOS 15.0, *) {
-                font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize))
+                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize, weight: weight))
                 maximumContentSizeCategory = .accessibilityMedium
             } else {
-                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
+                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize, weight: weight), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
             }
         }
     }
