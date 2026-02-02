@@ -10,10 +10,15 @@ import UIKit
 public struct UIOnboardingFeature {
     public var icon: UIImage
     public var iconTint: UIColor
-    public var title: String
-    public var description: String
-    
-    public init(icon: UIImage, iconTint: UIColor = .label, title: String, description: String) {
+    public var title: NSAttributedString
+    public var description: NSAttributedString
+
+    public init(
+        icon: UIImage,
+        iconTint: UIColor = .label,
+        title: NSAttributedString,
+        description: NSAttributedString
+    ) {
         self.icon = icon
         self.iconTint = iconTint
         self.title = title
@@ -22,17 +27,9 @@ public struct UIOnboardingFeature {
 }
 
 public struct UIOnboardingFeatureStyle {
-    public var titleFontName: String
-    public var titleFontSize: CGFloat
-    public var descriptionFontName: String
-    public var descriptionFontSize: CGFloat
     public var spacing: CGFloat
-    
-    public init(titleFontName: String = "", titleFontSize: CGFloat = 17, descriptionFontName: String = "", descriptionFontSize: CGFloat = 17, spacing: CGFloat = 0.8) {
-        self.titleFontName = titleFontName
-        self.titleFontSize = titleFontSize
-        self.descriptionFontName = descriptionFontName
-        self.descriptionFontSize = descriptionFontSize
+
+    public init(spacing: CGFloat = 0.8) {
         self.spacing = spacing
     }
 }

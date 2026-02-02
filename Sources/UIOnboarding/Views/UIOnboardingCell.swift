@@ -80,9 +80,7 @@ final class UIOnboardingCell: UITableViewCell {
         titleLabel.isAccessibilityElement = true
         
         descriptionLabel.isAccessibilityElement = true
-        
-        configureFonts()
-        
+                
         labelStack = .init(frame: .zero)
         labelStack.axis = .vertical
         labelStack.addArrangedSubview(titleLabel)
@@ -113,11 +111,11 @@ final class UIOnboardingCell: UITableViewCell {
         featureGlyph.image = feature.icon
         featureGlyph.tintColor = feature.iconTint
                 
-        titleLabel.text = feature.title
-        titleLabel.accessibilityLabel = feature.title
-        
-        descriptionLabel.text = feature.description
-        descriptionLabel.accessibilityLabel = feature.description
+        titleLabel.attributedText = feature.title
+        titleLabel.accessibilityLabel = feature.title.string
+
+        descriptionLabel.attributedText = feature.description
+        descriptionLabel.accessibilityLabel = feature.description.string
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -130,28 +128,10 @@ final class UIOnboardingCell: UITableViewCell {
     private func handleHorizontalSizeClassChange() {
         // Check if the view is visible and the properties are initialized.
         guard window != nil else { return }
-        
-        configureFonts()
-        
+
         stackBottom.constant = traitCollection.horizontalSizeClass == .regular ? -48 : -12
         featureGlyphWidth.constant = traitCollection.horizontalSizeClass == .regular ? 60 : 44
         stackLeading.constant = traitCollection.horizontalSizeClass == .regular ? 32 : 18
         contentView.layoutIfNeeded()
-    }
-}
-
-private extension UIOnboardingCell {
-    func configureFonts() {
-        if let customTitleFont = UIFont(name: configuration.titleFontName, size: traitCollection.horizontalSizeClass == .regular ? configuration.titleFontSize * 1.176 : configuration.titleFontSize) {
-            titleLabel.font = UIFontMetrics.default.scaledFont(for: customTitleFont)
-        } else {
-            titleLabel.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? configuration.titleFontSize * 1.176 : configuration.titleFontSize, weight: .semibold))
-        }
-
-        if let customDescriptionFont = UIFont(name: configuration.descriptionFontName, size: traitCollection.horizontalSizeClass == .regular ? configuration.descriptionFontSize * 1.176 : configuration.descriptionFontSize) {
-            descriptionLabel.font = UIFontMetrics.default.scaledFont(for: customDescriptionFont)
-        } else {
-            descriptionLabel.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? configuration.descriptionFontSize * 1.176 : configuration.descriptionFontSize, weight: .light))
-        }
     }
 }
